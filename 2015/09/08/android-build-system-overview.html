@@ -3,21 +3,37 @@
 <head>
   <meta charset="utf-8">
   
-  <title>关于 | &lt;工作室&gt;笔记</title>
+  <title>Android build 系统概况 | &lt;工作室&gt;笔记</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="网站我的私人笔记本
-计划计划赶不上变化，顾没有计划。">
-<meta property="og:type" content="website">
-<meta property="og:title" content="关于">
-<meta property="og:url" content="http://www.dailywerk.com/about/index.html">
+  <meta name="description" content="译：Android build system overview
+Android build系统是用于生成、测试、运行和打包你应用的工具套件。该系统可以作为Android Studio菜单的中间件工具运行，也可以直接使用命令行运行。通过该build系统，你可以：
+
+自定义、配置和扩展build流程
+在使用同样的工程和模块的情况下为你的应用创建多个不同特性的APK
+在代码层上做到代码和资源的重用
+An">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android build 系统概况">
+<meta property="og:url" content="http://www.dailywerk.com/2015/09/08/android-build-system-overview.html">
 <meta property="og:site_name" content="<工作室>笔记">
-<meta property="og:description" content="网站我的私人笔记本
-计划计划赶不上变化，顾没有计划。">
-<meta property="og:updated_time" content="2015-08-31T00:37:59.563Z">
+<meta property="og:description" content="译：Android build system overview
+Android build系统是用于生成、测试、运行和打包你应用的工具套件。该系统可以作为Android Studio菜单的中间件工具运行，也可以直接使用命令行运行。通过该build系统，你可以：
+
+自定义、配置和扩展build流程
+在使用同样的工程和模块的情况下为你的应用创建多个不同特性的APK
+在代码层上做到代码和资源的重用
+An">
+<meta property="og:image" content="http://developer.android.com/images/build.png">
+<meta property="og:updated_time" content="2015-09-08T01:56:44.274Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="关于">
-<meta name="twitter:description" content="网站我的私人笔记本
-计划计划赶不上变化，顾没有计划。">
+<meta name="twitter:title" content="Android build 系统概况">
+<meta name="twitter:description" content="译：Android build system overview
+Android build系统是用于生成、测试、运行和打包你应用的工具套件。该系统可以作为Android Studio菜单的中间件工具运行，也可以直接使用命令行运行。通过该build系统，你可以：
+
+自定义、配置和扩展build流程
+在使用同样的工程和模块的情况下为你的应用创建多个不同特性的APK
+在代码层上做到代码和资源的重用
+An">
   
   
     <link rel="icon" href="/favicon.png">
@@ -104,11 +120,11 @@
           <section id="main">
             <div class="main-body-header">
 
-              <h1 class="header"><em class="page-title-link" data-url="/about/index.html">关于</em></h1>
+              <h1 class="header"><a class="page-title-link" href="/categories/Android/">Android</a></h1>
             </div>
             <div class="main-body-content">
               
-  <article id="page-undefined" class="article article-single article-type-page" itemscope itemprop="blogPost">
+  <article id="post-android-build-system-overview" class="article article-single article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
       <!--  -->
       
@@ -116,26 +132,50 @@
           
   
     <h1 class="article-title" itemprop="name">
-      关于
+      Android build 系统概况
     </h1>
   
 
         </header>
       
       <p class="article-byline">
-        <a href="/about/index.html" class="article-date">
-  <time datetime="2015-08-25T02:48:16.000Z" itemprop="datePublished">2015-08-25</time>
+        <a href="/2015/09/08/android-build-system-overview.html" class="article-date">
+  <time datetime="2015-09-08T01:12:49.000Z" itemprop="datePublished">2015-09-08</time>
 </a>
       </p>
       <div class="article-entry" itemprop="articleBody">
-        <h3 id="网站">网站</h3><p>我的私人笔记本</p>
-<h3 id="计划">计划</h3><p>计划赶不上变化，顾没有计划。</p>
+        <p>译：<a href="http://developer.android.com/sdk/installing/studio-build.html#detailed-build" target="_blank" rel="external">Android build system overview</a></p>
+<p>Android build系统是用于生成、测试、运行和打包你应用的工具套件。该系统可以作为Android Studio菜单的中间件工具运行，也可以直接使用命令行运行。通过该build系统，你可以：</p>
+<ul>
+<li>自定义、配置和扩展build流程</li>
+<li>在使用同样的工程和模块的情况下为你的应用创建多个不同特性的APK</li>
+<li>在代码层上做到代码和资源的重用
+Android build系统的灵活性可以让你在不需要修改应用的核心代码文件的情况下做到上述内容。如何build一个Android Studio项目，参考<a href="http://developer.android.com/tools/building/building-studio.html" target="_blank" rel="external"> Building and Running from Android Studio</a>。在Android Studio中如何自定义build系统的配置，参考<a href="http://developer.android.com/tools/building/configuring-gradle.html" target="_blank" rel="external">Configuring Gradle Builds</a>。</li>
+</ul>
+<h2 id="详细的构建过程">详细的构建过程</h2><p>build流程中涉及多个工具和程序，它们勇于生成最终在.apk文件中用到的中间文件。如果你使用Android Studio进行开发，那每次你为项目或者模块执行Gradle的build任务时，就会走一遍完整的build流程。build流程非常灵活，然而因为大多数执行流程是可配置和可扩展的，因此理解在底层到底执行了什么动作对你（以后配置或自定义时）很有用。</p>
+<p><img src="http://developer.android.com/images/build.png" alt="Android Apps的生成过程"></p>
+<p>一个普通的build流程大概如下面所述。Build系统会合并所有roduct flavors、build types和dependencies生成的资源。如果不同目录包含同名或者同样配置的资源，将会遵循“dependencies覆盖build types，build types覆盖product flavors，product flavors覆盖main source目录”</p>
+<ul>
+<li>Android Asset Packaging Tool(aapt)访问并编译应用资源文件，如AndroidManifest.xml和Activities的XML文件。同时生成一个让你可以在Java代码中引用这些资源的R.java文件。</li>
+<li>aidl工具转换所有的.aidl接口，生成Java interface。</li>
+<li>你的所有Java代码，包括R.java和.aidl文件，全部被Java编译器编译成.class文件。</li>
+<li>然后dex工具将所有的.class文件转成Dalvik字节码。所有程序引用的第三方库和.class文件也在这里被转成.dex文件。</li>
+<li>所有不需要编译的文件（如图片）、编译过的资源、和.dex文件被送到apkbuilder巩固，并打包成.apk文件。</li>
+<li>一单.apk生成了，它必须使用debug或者release的key进行签名，这样它才能在设备中安装。</li>
+<li>最后，如果你是使用release模式签名.apk文件，你还必须使用zipalign工具进行整理。这会让最后的.apk在设备中运行时减少内存使用量。</li>
+</ul>
+<p>注意：Android应用内部的函数引用数目限制为64K。如果你的应用超过这个限制，build程序将会输出下面的错误信息：</p>
+<pre><code><span class="type">Unable</span> to execute dex: <span class="keyword">method</span> <span class="type">ID</span> <span class="keyword">not</span> <span class="keyword">in</span> [<span class="number">0</span>, <span class="number">0xffff</span>]: <span class="number">65536</span>.
+</code></pre><p>如何避免这个错误，参考<a href="http://developer.android.com/tools/building/multidex.html" target="_blank" rel="external">Building Apps with Over 65K Methods</a></p>
+<h2 id="输出结果">输出结果</h2><p>build工具针对每个gradle的build生成的APK存放在app/build目录中：app/build/outputs/apk/目录包含以app-&lt;flavor&gt;&gt;-&lt;buildtype&gt;.apk的包；例如，app-full-release.apk或app-demo-debug.apk。</p>
 
       </div>
       <footer class="article-footer">
-        <a data-url="http://www.dailywerk.com/about/index.html" data-id="cieaoahol0001lw0nkw7hrie7" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+        <a data-url="http://www.dailywerk.com/2015/09/08/android-build-system-overview.html" data-id="cieaoahoy0009lw0nl6ywgqvm" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
         
         
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
+
       </footer>
     </div>
   </article>
@@ -156,6 +196,19 @@
       
     </ul>
   </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2015/09/06/IDEA-gradle-create-android-project.html" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <p class="article-nav-title">使用IntelliJ-IDEA 创建基于Gradle管理的android项目</p>
+      <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+    </a>
+  
+</nav>
+
   
   <div class="widgets-container">
     

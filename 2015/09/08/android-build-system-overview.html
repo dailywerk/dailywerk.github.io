@@ -4,8 +4,6 @@
   <meta charset="utf-8">
   
   <title>Android build 系统概况 | &lt;工作室&gt;笔记</title>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta name="keywords" content="学习,Android,IntelliJ IDEA,学习交流,翻译">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="译：Android build system overview
 Android build系统是用于生成、测试、运行和打包你应用的工具套件。该系统可以作为Android Studio菜单的中间件工具运行，也可以直接使用命令行运行。通过该build系统，你可以：
@@ -25,8 +23,8 @@ Android build系统是用于生成、测试、运行和打包你应用的工具�
 在使用同样的工程和模块的情况下为你的应用创建多个不同特性的APK
 在代码层上做到代码和资源的重用
 An">
-<meta property="og:image" content="http://developer.android.com/images/build.png">
-<meta property="og:updated_time" content="2015-09-08T01:56:44.274Z">
+<meta property="og:image" content="http://www.dailywerk.com/images/android-build-system.png">
+<meta property="og:updated_time" content="2015-09-13T06:06:59.184Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android build 系统概况">
 <meta name="twitter:description" content="译：Android build system overview
@@ -155,7 +153,7 @@ An">
 Android build系统的灵活性可以让你在不需要修改应用的核心代码文件的情况下做到上述内容。如何build一个Android Studio项目，参考<a href="http://developer.android.com/tools/building/building-studio.html" target="_blank" rel="external"> Building and Running from Android Studio</a>。在Android Studio中如何自定义build系统的配置，参考<a href="http://developer.android.com/tools/building/configuring-gradle.html" target="_blank" rel="external">Configuring Gradle Builds</a>。</li>
 </ul>
 <h2 id="详细的构建过程">详细的构建过程</h2><p>build流程中涉及多个工具和程序，它们勇于生成最终在.apk文件中用到的中间文件。如果你使用Android Studio进行开发，那每次你为项目或者模块执行Gradle的build任务时，就会走一遍完整的build流程。build流程非常灵活，然而因为大多数执行流程是可配置和可扩展的，因此理解在底层到底执行了什么动作对你（以后配置或自定义时）很有用。</p>
-<p><img src="http://developer.android.com/images/build.png" alt="Android Apps的生成过程"></p>
+<p><img src="/images/android-build-system.png" alt="Android Apps的生成过程"></p>
 <p>一个普通的build流程大概如下面所述。Build系统会合并所有roduct flavors、build types和dependencies生成的资源。如果不同目录包含同名或者同样配置的资源，将会遵循“dependencies覆盖build types，build types覆盖product flavors，product flavors覆盖main source目录”</p>
 <ul>
 <li>Android Asset Packaging Tool(aapt)访问并编译应用资源文件，如AndroidManifest.xml和Activities的XML文件。同时生成一个让你可以在Java代码中引用这些资源的R.java文件。</li>
@@ -226,7 +224,7 @@ Android build系统的灵活性可以让你在不需要修改应用的核心代�
               
 <a href="/2015/09/08/android-build-system-overview.html" class="thumbnail">
   
-    <span style="background-image:url(http://developer.android.com/images/build.png
+    <span style="background-image:url(/images/android-build-system.png
 )" alt="Android build 系统概况" class="thumbnail-image"></span>
   
 </a>
